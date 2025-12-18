@@ -1,14 +1,19 @@
 {
   "name": "word-trainer",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "src/app.js",
   "scripts": {
     "start": "node src/app.js",
     "dev": "nodemon src/app.js"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ArgentiLover/words-training.git"
+  },
+  "homepage": "https://github.com/ArgentiLover/words-training",
   "description": "",
   "dependencies": {
     "express": "^5.2.1"
