@@ -13,7 +13,7 @@
     "type": "git",
     "url": "https://github.com/ArgentiLover/words-training.git"
   },
-  "homepage": "https://github.com/ArgentiLover/words-training",
+  "homepage": "https://argentilover.github.io/words-training/",
   "description": "",
   "dependencies": {
     "express": "^5.2.1"
