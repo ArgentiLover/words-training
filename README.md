@@ -1,7 +1,6 @@
-```markdown
 # Тренажёр слов
 
-https://github.com/ArgentiLover/words-training
+[https://argentilover.github.io/words-training](Сайт)
 
 Приложение "Тренажёр слов" представляет собой простой веб-тренажёр для изучения английских слов с переводом на русский. Оно реализовано на Node.js с использованием Express и включает фронтенд на HTML, CSS и JavaScript. Все требования задания выполнены.
 
@@ -11,15 +10,23 @@ https://github.com/ArgentiLover/words-training
 
 - **Express-сервер** с маршрутами для работы с данными и тренажёром слов.
 - **Маршруты CRUD** для слов:
-  - `GET /api/words` — получение всех слов, с поддержкой поиска через query-параметр `?search=...`.
-  - `GET /api/words/:id` — получение слова по ID.
-  - `POST /api/words` — добавление нового слова (`word` и `translation`).
-  - `PUT /api/words/:id` — обновление слова.
-  - `DELETE /api/words/:id` — удаление слова.
+
+  ```
+  GET /api/words         — получение всех слов, с поддержкой поиска через query-параметр ?search=...
+  GET /api/words/:id     — получение слова по ID
+  POST /api/words        — добавление нового слова (word и translation)
+  PUT /api/words/:id     — обновление слова
+  DELETE /api/words/:id  — удаление слова
+  ```
+
 - **Маршруты тренажёра**:
-  - `POST /api/train/start` — начало тренировки, случайный порядок слов, обнуление очков.
-  - `GET /api/train/next` — получение следующего слова для перевода.
-  - `POST /api/train/check` — проверка ответа пользователя, обновление очков.
+
+  ```
+  POST /api/train/start  — начало тренировки, случайный порядок слов, обнуление очков
+  GET  /api/train/next   — получение следующего слова для перевода
+  POST /api/train/check  — проверка ответа пользователя, обновление очков
+  ```
+
 - **Обработка запросов**:
   - Используется `express.json()` и `express.urlencoded()` для парсинга тела запроса.
   - Параметры URL обрабатываются через `req.params`, query-параметры через `req.query`.
