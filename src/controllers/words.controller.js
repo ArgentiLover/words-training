@@ -123,8 +123,16 @@ const getRandom = (req, res) => {
 };
 
 const checkAnswer = (req, res) => {
-    const { id, answer } = req.body;
-    const current = queue[0];
+    const { id, answer, queue: clientQueue } = req.body;
+    
+    // Use queue from client if provided, otherwise use server queue
+    const currentQueue = clientQueue && clientQueue.length > 0 ? clientQueue : queue;
+    
+    if (!currentQueue.length) {
+        return res.status(400).json({ error: 'Queue is empty' });
+    }
+    
+    const current = currentQueue[0];
 
     if (!current || current.id !== id) {
         return res.status(400).json({ error: 'Invalid state' });
@@ -135,13 +143,13 @@ const checkAnswer = (req, res) => {
 
     if (correct) score++;
 
-    queue.shift();
+    const rightAnswer = current.translation;
 
     res.json({
         correct,
-        rightAnswer: current.translation,
+        rightAnswer: rightAnswer,
         score,
-        left: queue.length
+        left: currentQueue.length - 1
     });
 };
 

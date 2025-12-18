@@ -21,7 +21,7 @@ async function start() {
             if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
             
             const data = await res.json();
-            total = data.total;
+            total = data.queue ? data.queue.length : data.total;
             queue = data.queue || [];
             score = 0;
             
@@ -49,21 +49,33 @@ async function loadNext() {
         return;
     }
 
+    total = Number(localStorage.getItem('total')) || total;
+
     const current = queue[0];
     currentId = current.id;
     document.getElementById('word').textContent = current.word;
     document.getElementById('answer').value = '';
     document.getElementById('result').textContent = '';
+    document.getElementById('progress').textContent = `${score}/${total}`;
     localStorage.setItem('queue', JSON.stringify(queue));
 }
 
 async function check() {
     const answer = document.getElementById('answer').value;
+    
+    const currentWord = queue[0];
+    if (!currentWord) return;
+    
+    const correctAnswer = currentWord.translation;
 
     const res = await fetch('/api/train/check', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id: currentId, answer })
+        body: JSON.stringify({ 
+            id: currentId, 
+            answer,
+            queue: queue
+        })
     });
 
     const data = await res.json();
@@ -73,8 +85,10 @@ async function check() {
     localStorage.setItem('score', score);
     localStorage.setItem('queue', JSON.stringify(queue));
 
+    total = Number(localStorage.getItem('total')) || total;
+
     document.getElementById('result').textContent =
-        data.correct ? 'Верно' : `Неверно: ${data.rightAnswer}`;
+        data.correct ? 'Верно' : `Неверно: ${correctAnswer}`;
 
     document.getElementById('progress').textContent =
         `${score}/${total}`;
@@ -86,14 +100,36 @@ async function addWord() {
     const word = document.getElementById('newWord').value;
     const translation = document.getElementById('newTranslation').value;
 
-    await fetch('/api/words', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ word, translation })
-    });
+    if (!word || !translation) {
+        alert('Заполните оба поля');
+        return;
+    }
 
-    document.getElementById('newWord').value = '';
-    document.getElementById('newTranslation').value = '';
+    try {
+        const res = await fetch('/api/words', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ word, translation })
+        });
+
+        const newWord = await res.json();
+
+        const randomIndex = Math.floor(Math.random() * (queue.length + 1));
+        queue.splice(randomIndex, 0, newWord);
+
+        const prevTotal = Number(localStorage.getItem('total')) || total || 0;
+        total = prevTotal + 1;
+
+        localStorage.setItem('queue', JSON.stringify(queue));
+        localStorage.setItem('total', total);
+        document.getElementById('progress').textContent = `${score}/${total}`;
+
+        document.getElementById('newWord').value = '';
+        document.getElementById('newTranslation').value = '';
+    } catch (error) {
+        console.error('Error adding word:', error);
+        alert('Ошибка при добавлении слова');
+    }
 }
 
 function showWin(score) {
