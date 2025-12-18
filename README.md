@@ -1,6 +1,6 @@
 # Тренажёр слов
 
-[https://argentilover.github.io/words-training](Сайт)
+[Сайт](https://argentilover.github.io/words-training)
 
 Приложение "Тренажёр слов" представляет собой простой веб-тренажёр для изучения английских слов с переводом на русский. Оно реализовано на Node.js с использованием Express и включает фронтенд на HTML, CSS и JavaScript. Все требования задания выполнены.
 
