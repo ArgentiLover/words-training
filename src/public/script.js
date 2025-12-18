@@ -155,4 +155,42 @@ function restart() {
     start();
 }
 
-start();
+document.addEventListener('DOMContentLoaded', () => {
+    const answerInput = document.getElementById('answer');
+    if (answerInput) {
+        answerInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                check();
+            }
+        });
+    }
+
+    const newWordInput = document.getElementById('newWord');
+    const newTranslationInput = document.getElementById('newTranslation');
+
+    if (newWordInput) {
+        newWordInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                if (!newWordInput.value.trim()) return;
+                if (newTranslationInput && !newTranslationInput.value.trim()) {
+                    newTranslationInput.focus();
+                } else {
+                    addWord();
+                }
+            }
+        });
+    }
+
+    if (newTranslationInput) {
+        newTranslationInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                addWord();
+            }
+        });
+    }
+
+    start();
+});
