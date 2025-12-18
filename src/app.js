@@ -14,9 +14,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static(path.resolve(__dirname, 'public')));
-console.log('Router test:', typeof wordsRoutes);
 app.use('/api/words', wordsRoutes);
 app.use('/api/train', trainRoutes);
+app.use('/api/start', (req, res, next) => {
+  req.url = '/start';
+  trainRoutes(req, res, next);
+});
 
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
