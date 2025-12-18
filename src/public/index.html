@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Тренажёр слов</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="trainer">
+    <h2 id="word"></h2>
+    <input id="answer" placeholder="Перевод">
+    <button onclick="check()">Ответить</button>
+    <div id="result"></div>
+    <div id="progress"></div>
+</div>
+
+<div id="add-word">
+    <input id="newWord" placeholder="Новое слово">
+    <input id="newTranslation" placeholder="Перевод">
+    <button onclick="addWord()">Добавить слово</button>
+</div>
+
+
+<div id="win" style="display:none">
+    <h1>Победа</h1>
+    <div id="finalScore"></div>
+    <button onclick="restart()">Заново</button>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

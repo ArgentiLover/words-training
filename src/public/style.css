@@ -1,0 +1,55 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+}
+
+#trainer {
+    width: 300px;
+    margin: 20px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 6px;
+    text-align: center;
+}
+
+#add-word {
+    width: 300px;
+    margin: 40px auto 0;  /* увеличенный верхний отступ */
+    padding: 20px;
+    background: white;
+    border-radius: 6px;
+    text-align: center;
+}
+
+#add-word input {
+    width: 90%;
+    margin-bottom: 10px;
+    padding: 6px;
+}
+
+
+#word {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+}
+
+button {
+    width: 100%;
+    padding: 8px;
+}
+
+#result {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+#score {
+    margin-top: 5px;
+    color: gray;
+}

@@ -1,0 +1,73 @@
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+$RECYCLE.BIN/
+
+# Editor / IDE
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+package-lock.json
+yarn.lock
+.pnpm-debug.log
+dist/
+build/
+.next/
+out/
+coverage/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+env/
+.venv/
+pip-log.txt
+.pytest_cache/
+
+# Environment / secrets
+.env
+.env.*.local
+secrets.*
+secrets.env
+
+# Logs and temp
+*.log
+logs/
+tmp/
+temp/
+*.tmp
+.cache/
+
+# Compiled / binaries
+*.exe
+*.dll
+*.so
+*.dylib
+*.class
+*.jar
+*.o
+*.obj
+
+# Archives
+*.zip
+*.tar
+*.tar.gz
+*.rar
+
+# Misc
+*.swp
+*.swo
+*.bak
+*.orig
+.idea/
