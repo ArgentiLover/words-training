@@ -24,7 +24,10 @@ const startTraining = (req, res) => {
     shuffle(queue);
     score = 0;
 
-    res.json({ total: queue.length });
+    res.json({ 
+        total: queue.length,
+        queue: queue
+    });
 };
 
 const getNext = (req, res) => {
