@@ -1,5 +1,7 @@
 let currentId = null;
 let total = 0;
+let queue = [];
+let score = 0;
 
 async function start() {
     let storedQueue = localStorage.getItem('queue');
@@ -20,7 +22,7 @@ async function start() {
         queue = [];
         localStorage.setItem('total', total);
         localStorage.setItem('score', score);
-        loadNext();
+        await loadNext();
     }
 }
 
